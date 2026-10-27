@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Football Without Barriers: an original synthetic football match with accessible spoken description and a high-contrast pitch view.">
+  <meta name="theme-color" content="#0b1324">
+  <title>Football Without Barriers | Accessible Match Experience</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./public/data/match.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to match experience</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><div class="eyebrow">Accessibility-first match intelligence</div><div class="brand-name">Football <em>Without</em> Barriers</div></div>
+      </div>
+      <div class="status-area"><span class="status-pulse" aria-hidden="true"></span><span>SYNTHETIC DATA DEMO</span></div>
+    </header>
+
+    <main id="main">
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <div class="section-label">THE MATCH, YOUR WAY <span aria-hidden="true">/</span> 001</div>
+          <h1 id="intro-title">Every moment.<br><span>Made accessible.</span></h1>
+          <p>A fictional football sequence told through synchronised movement and description. Choose the experience that works for you.</p>
+        </div>
+        <div class="mode-panel" role="group" aria-label="Experience mode">
+          <button type="button" class="mode-button is-active" data-mode="visual" aria-pressed="true">
+            <span class="mode-glyph" aria-hidden="true">◉</span><span><strong>Visual support</strong><small>High-contrast pitch and description</small></span>
+          </button>
+          <button type="button" class="mode-button" data-mode="audio" aria-pressed="false">
+            <span class="mode-glyph" aria-hidden="true">♫</span><span><strong>Audio-first</strong><small>Clear spoken play-by-play</small></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="match-bar" aria-label="Match information">
+        <div class="team"><span class="team-shape home" aria-hidden="true"></span><div><span class="team-label">HOME · ATTACKS RIGHT</span><strong id="homeName">Rivergate</strong></div></div>
+        <div class="score-block"><div class="scoreline"><span>0</span><span class="score-separator">–</span><span>0</span></div><div class="score-note">FICTIONAL SEQUENCE · <span id="matchClock">00:00</span></div></div>
+        <div class="team away-team"><div><span class="team-label">AWAY · ATTACKS LEFT</span><strong id="awayName">Northbridge</strong></div><span class="team-shape away" aria-hidden="true"></span></div>
+      </section>
+
+      <div class="app-grid">
+        <section class="card pitch-panel" aria-labelledby="pitch-title">
+          <div class="card-topline"><div><div class="eyebrow">01 / LIVE POSITION</div><h2 id="pitch-title">The pitch, simplified</h2></div><span class="inset-label" id="phaseLabel">RIVERGATE BUILD</span></div>
+          <div class="pitch-shell" id="pitchShell">
+            <svg id="pitch" viewBox="-3 -3 111 74" role="img" aria-labelledby="pitchGraphicTitle pitchGraphicDesc" preserveAspectRatio="xMidYMid meet">
+              <title id="pitchGraphicTitle">Live pitch diagram</title>
+              <desc id="pitchGraphicDesc">Rivergate players are gold circles, Northbridge players are blue squares, and the ball is white. Rivergate attack towards the right. A written description of each event follows.</desc>
+              <rect x="-3" y="-3" width="111" height="74" fill="#0a211d"/>
+              <g stroke="#d6f1dd" stroke-width=".3" fill="none" opacity=".75">
+                <rect x="0" y="0" width="105" height="68" rx=".3"/>
+                <path d="M52.5 0 V68"/><circle cx="52.5" cy="34" r="9.15"/><circle cx="52.5" cy="34" r=".45" fill="#d6f1dd"/>
+                <path d="M0 13.85 H16.5 V54.15 H0 M105 13.85 H88.5 V54.15 H105"/>
+                <path d="M0 24.84 H5.5 V43.16 H0 M105 24.84 H99.5 V43.16 H105"/>
+                <circle cx="11" cy="34" r=".35" fill="#d6f1dd"/><circle cx="94" cy="34" r=".35" fill="#d6f1dd"/>
+              </g>
+              <path d="M9 66 H26" stroke="#ffd46e" stroke-width="1" stroke-dasharray="2 1" opacity=".6"/><path d="M26 66 l-3 -1.5 v3 Z" fill="#ffd46e" opacity=".6"/>
+              <g id="playerMarkers"></g>
+              <circle id="ballMarker" cx="32" cy="31" r="1.5" stroke="#0b1324" stroke-width=".7" fill="white"/>
+            </svg>
+            <div class="pitch-overlay" aria-hidden="true"><span id="possessionIndicator">RIVERGATE IN POSSESSION</span><span>→ HOME ATTACK</span></div>
+          </div>
+          <div class="pitch-legend" aria-label="Map legend"><span><i class="legend-icon home"></i>Rivergate</span><span><i class="legend-icon away"></i>Northbridge</span><span><i class="legend-icon ball"></i>Ball</span><span class="legend-hint">Not a real match or tracking feed</span></div>
+          <div class="transport" aria-label="Playback controls">
+            <button id="playButton" type="button" class="primary-button"><span id="playIcon" aria-hidden="true">▶</span> <span id="playText">Play sequence</span></button>
+            <button id="restartButton" type="button" class="icon-button" aria-label="Restart sequence" title="Restart sequence">↺</button>
+            <div class="timeline"><label for="timeSlider" class="sr-only">Seek through the 80-second sequence</label><input id="timeSlider" type="range" min="0" max="80000" step="200" value="0"><div class="timeline-labels"><span id="elapsed">00:00</span><span>01:20</span></div></div>
+            <label class="speed-label" for="speedSelect">Speed <select id="speedSelect"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select></label>
+          </div>
+        </section>
+
+        <section class="card narration-panel" aria-labelledby="narration-title">
+          <div class="card-topline"><div><div class="eyebrow">02 / ACCESSIBLE NARRATIVE</div><h2 id="narration-title">Hear what's happening</h2></div><span class="inset-label" id="narrationMode">DETAILED</span></div>
+          <div class="narration-settings"><div class="field"><label for="detailSelect">Description level</label><select id="detailSelect"><option value="essential">Essential — fewer words</option><option value="detailed" selected>Detailed — more context</option></select></div>
+            <div class="field"><label for="voiceSelect">Voice</label><select id="voiceSelect"><option value="browser">Device speech</option><option value="azure" disabled>Azure Speech (not connected)</option></select></div>
+          </div>
+          <div class="speech-control"><button type="button" id="speechButton" class="secondary-button" aria-pressed="false">🔇 <span>Enable spoken commentary</span></button><span class="micro-copy">Sound is off initially. Use headphones if preferred.</span></div>
+          <div class="now-label"><span aria-hidden="true" class="accent-line"></span><span>NOW DESCRIBING</span><span id="eventTime" class="timestamp">00:00</span></div>
+          <div class="narration-body" aria-live="polite" aria-atomic="true" id="commentaryText">Rivergate have the ball in their own half and are beginning an attacking move.</div>
+          <div class="evidence-section"><div class="evidence-heading"><span>Why it matters</span><span aria-hidden="true">↗</span></div><p id="whyText">The attack starts with safe possession before the first forward pass.</p>
+            <div class="evidence-meta"><span id="evidenceRef">E00 · 00:00</span><span id="sourceBadge">AUTHORED / VERIFIABLE</span></div>
+          </div>
+          <button id="aiButton" type="button" class="ai-button" disabled>Ask Foundry to rephrase this event <span id="aiStatus">(connect Azure to enable)</span></button>
+          <div class="integrity-note"><span aria-hidden="true">◇</span><span><strong>Evidence before eloquence.</strong> Offline wording is prewritten and referenced to synthetic events. AI narration is only available once a live Foundry endpoint is connected.</span></div>
+        </section>
+      </div>
+
+      <section class="lower-grid" aria-label="Match evidence and accessibility details">
+        <section class="card insight-panel" aria-labelledby="intel-title"><div class="card-topline"><div><div class="eyebrow">03 / CONTEXT</div><h2 id="intel-title">What the data knows</h2></div></div>
+          <div class="metric-grid"><div><span>Completed passes</span><strong id="passCount">0</strong></div><div><span>Shots on target</span><strong id="shotCount">0</strong></div><div><span>Defensive pressure</span><strong id="pressureCount">0</strong></div></div>
+          <div class="proof-note"><span id="proofTitle">Frame-linked evidence</span><p id="proofDetail">Select play to follow the original fictional tracking and events.</p></div>
+        </section>
+        <section class="card event-panel" aria-labelledby="events-title"><div class="card-topline"><div><div class="eyebrow">04 / MATCH EVENTS</div><h2 id="events-title">Event trail</h2></div><span class="inset-label">12 EVENTS</span></div><ol id="eventList" class="event-list" aria-label="Select an event to jump to it"></ol></section>
+      </section>
+      <footer class="site-footer"><span>FOOTBALL WITHOUT BARRIERS · PERSONAL HACKATHON EXPERIMENT</span><span>Original synthetic footage-free data · v0.2</span></footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "football-without-barriers",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Accessibility-first fictional football match experience, created for the Inside the Game hackathon",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/server.test.js",
+    "generate": "python3 tools/generate_match.py"
+  },
+  "license": "UNLICENSED"
+}
