@@ -65,6 +65,12 @@ The server starts on `127.0.0.1` deliberately. **It is not production-hosted or 
 
 **Research audit (19 Oct):** see `docs/RESEARCH_GAP_ANALYSIS_2026-10-19.md`. **Update (27 Oct):** the local v0.2 release candidate addresses the authored-replay causal timestamps and reduces duplicate aria-live announcements when optional device speech is on. Genuine agentic AI, Azure end-to-end verification, user testing and safe public hosting are **not** complete.
 
+## Microsoft Foundry Responses — keyless offline batch (new, pending first live run)
+
+The project now includes `tools/generate_foundry_insights.py`, which can use Microsoft Entra ID and the Responses API to create evidence-linked **pre-generated** event interpretations from a personal Foundry model. The static UI can load `public/data/foundry_insights.json` if the owner creates and reviews it. **The model has NOT been called from this exporter yet; no AI batch data is included.** The original match narration remains authored. No Azure keys are ever needed in the browser or checked into GitHub.
+
+See [`docs/FOUNDRY_BATCH_INTEGRATION.md`](docs/FOUNDRY_BATCH_INTEGRATION.md) for the safe Cloud Shell commands, exact personal endpoint, testing, AI limitations, expected inference charges and publication gate. This is not the separate optional local Node adapter, which still expects an API key.
+
 ## Important limitations
 
 - **Synthetic replay, not a real match or true live feed.** Although it uses frame-by-frame data and timestamps, it does not ingest events from a real broadcast or hardware.

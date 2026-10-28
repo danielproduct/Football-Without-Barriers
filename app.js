@@ -19,7 +19,8 @@
   const svgNS = 'http://www.w3.org/2000/svg';
   const state = {t:0, playing:false, rate:1, previousTs:null, mode:'visual', detail:'detailed',
     speech:false, speechEngine:'browser', currentEvent:null, aiText:null,
-    azureAI:false, azureSpeech:false, activeAudio:null, lastVoiceRequest:0};
+    azureAI:false, azureSpeech:false, activeAudio:null, lastVoiceRequest:0,
+    foundryInsights:new Map()};
   const $markers = $('playerMarkers');
   const playerViews = new Map();
   const fmt = ms => {
@@ -131,7 +132,10 @@
     state.lastRenderedNarrationKey=renderKey;
     $('commentaryText').textContent=text;
     $('eventTime').textContent=fmt(availableAt(e));
-    $('whyText').textContent=e.why;
+    const insight=state.foundryInsights.get(e.id);
+    $('whyText').textContent=insight?.explanation||e.why;
+    $('whySource').textContent=insight?'Why it matters · Foundry batch':'Why it matters';
+    $('whySource').title=insight?'Pre-generated Microsoft Foundry interpretation. NOT live inference; automatically checked but not human-reviewed.':'';
     $('evidenceRef').textContent=`${e.id} · ${fmt(availableAt(e))} · ${playerName(e.player_id)}`;
     $('sourceBadge').textContent=state.aiText?'FOUNDRY REPHRASE / REVIEW':'AUTHORED / EVENT-LINKED';
     const facts=e.facts;
@@ -240,5 +244,30 @@
       if(state.azureSpeech){const option=$('voiceSelect').querySelector('[value="azure"]');option.disabled=false;option.textContent='Azure Speech';}
     }catch(_){/* Static GitHub Pages is expected not to have a backend. */}
   }
-  render(false);requestAnimationFrame(animate);void loadCapabilities();
+  async function loadBatchInsights(){
+    // GitHub Pages is static. These insights are a PRE-GENERATED model output,
+    // never a live cloud request from the browser and never a source of match facts.
+    if(!/^https?:$/.test(window.location.protocol))return;
+    try {
+      const response=await fetch('./public/data/foundry_insights.json',{cache:'no-store'});
+      if(!response.ok)return; // Optional asset, absent until owner runs the Foundry exporter.
+      const data=await response.json();
+      if(data.source!=='microsoft_foundry_responses'||data.synthetic!==true||
+         data.match_id!==match.match_id||data.generation_mode!=='offline_batch'||!Array.isArray(data.events))return;
+      const next=new Map();
+      for(const item of data.events){
+        const event=events.find(e=>e.id===item.event_id);
+        if(!event||item.available_at_ms!==availableAt(event)||
+           item.evidence_ids?.length!==1||item.evidence_ids[0]!==event.id||
+           item.automated_checks_passed!==true||item.human_reviewed!==false||
+           typeof item.explanation!=='string'||item.explanation.length>160||
+           item.explanation.length<12)continue;
+        next.set(item.event_id,item);
+      }
+      state.foundryInsights=next;
+      state.lastRenderedNarrationKey=null;
+      updateEvent(state.currentEvent,false);
+    }catch(_){/* Keep independently usable authored baseline. */}
+  }
+  render(false);requestAnimationFrame(animate);void loadCapabilities();void loadBatchInsights();
 })();

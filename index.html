@@ -82,11 +82,11 @@
           <div class="speech-control"><button type="button" id="speechButton" class="secondary-button" aria-pressed="false">🔇 <span>Enable spoken commentary</span></button><span class="micro-copy">Sound is off initially. Use headphones if preferred.</span></div>
           <div class="now-label"><span aria-hidden="true" class="accent-line"></span><span>NOW DESCRIBING</span><span id="eventTime" class="timestamp">00:00</span></div>
           <div class="narration-body" aria-live="polite" aria-atomic="true" id="commentaryText">Rivergate have the ball in their own half and are beginning an attacking move.</div>
-          <div class="evidence-section"><div class="evidence-heading"><span>Why it matters</span><span aria-hidden="true">↗</span></div><p id="whyText">The attack starts with safe possession before the first forward pass.</p>
+          <div class="evidence-section"><div class="evidence-heading"><span id="whySource">Why it matters</span><span aria-hidden="true">↗</span></div><p id="whyText">The attack starts with safe possession before the first forward pass.</p>
             <div class="evidence-meta"><span id="evidenceRef">E00 · 00:00</span><span id="sourceBadge">AUTHORED / VERIFIABLE</span></div>
           </div>
-          <button id="aiButton" type="button" class="ai-button" disabled>Ask Foundry to rephrase this event <span id="aiStatus">(connect Azure to enable)</span></button>
-          <div class="integrity-note"><span aria-hidden="true">◇</span><span><strong>Evidence before eloquence.</strong> Offline wording is prewritten and referenced to synthetic events. AI narration is only available once a live Foundry endpoint is connected.</span></div>
+          <button id="aiButton" type="button" class="ai-button" disabled>Live Foundry rephrasing unavailable <span id="aiStatus">(static demo)</span></button>
+          <div class="integrity-note"><span aria-hidden="true">◇</span><span><strong>Evidence before eloquence.</strong> Spoken commentary is authored and linked to synthetic events. If shown, the Foundry batch explanation is pre-generated, not a live AI call.</span></div>
         </section>
       </div>
 
