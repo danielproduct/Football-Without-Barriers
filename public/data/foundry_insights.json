@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "source": "microsoft_foundry_responses",
+  "synthetic": true,
+  "generation_mode": "offline_batch",
+  "model_deployment": "gpt-4.1-mini",
+  "generated_at_utc": "2026-10-28T01:19:48.543824+00:00",
+  "match_id": "FWB-SYNTH-001",
+  "review_note": "Automated validation only; factual human review not yet completed. This is NOT live AI inference.",
+  "events": [
+    {
+      "event_id": "E01",
+      "available_at_ms": 10200,
+      "salience": "normal",
+      "explanation": "Hart's pass advances the ball into central midfield, maintaining possession and progressing play.",
+      "evidence_ids": [
+        "E01"
+      ],
+      "automated_checks_passed": true,
+      "human_reviewed": false
+    }
+  ]
+}
